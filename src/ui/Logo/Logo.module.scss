@@ -1,6 +1,10 @@
+@use '../../../sass/variables/colors' as *;
+
 .logo {
-  font-family: 'Nunito', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #000000;
+  font: {
+    family: 'Goldman', serif;
+    size: 3.2rem;
+    weight: 400;
+  }
+  color: $dark_mode_text;
 }

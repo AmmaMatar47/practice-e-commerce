@@ -1,0 +1,8 @@
+@use '../../../sass/helpers/mixins.scss' as *;
+@use '../../../sass/variables/colors' as *;
+
+.listContainer {
+  @include flex-row;
+  padding: 1.2rem 2.8rem;
+  background-color: $dark_mode_elements_background;
+}
