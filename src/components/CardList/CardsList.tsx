@@ -2,7 +2,7 @@ import styles from './CardsList.module.scss';
 
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
-import { fetchProducts } from './productSlice';
+import { fetchProducts } from '../../redux/reducers/product.reducer';
 import Card from '../Card/Card';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 

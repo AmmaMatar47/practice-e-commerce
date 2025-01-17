@@ -1,7 +1,6 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import productReducer from './components/CardList/productSlice';
+import { configureStore } from '@reduxjs/toolkit';
+import { rootReducer } from './reducers/index.reducer';
 
-const rootReducer = combineReducers({ products: productReducer });
 const store = configureStore({ reducer: rootReducer });
 
 export type AppStore = typeof store;
