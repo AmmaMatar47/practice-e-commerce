@@ -1,8 +1,8 @@
 import { Link } from 'react-router';
 import styles from './Nav.module.scss';
 
-import Logo from '../../ui/Logo/Logo';
-import Button from '../../ui/Button/Button';
+import Logo from '../Logo/Logo';
+import Button from '../Button/Button';
 
 const Nav = () => {
   return (

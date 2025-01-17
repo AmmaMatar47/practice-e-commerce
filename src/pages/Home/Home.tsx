@@ -1,4 +1,4 @@
-import CardsList from './../../components/CardList/CardsList';
+import CardsList from '../../components/CardList/CardsList';
 
 const Home = () => {
   return (
