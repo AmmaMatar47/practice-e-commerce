@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { productAPIInstance } from './apiProductInstance';
+import { productAPIInstance } from './apiProductsInstance';
 
 interface Category {
   id: number;
@@ -9,7 +9,7 @@ interface Category {
   updatedAt: Date;
 }
 
-interface ProductType {
+export interface ProductType {
   category: Category;
   creationAt: Date;
   description: string;
@@ -20,9 +20,8 @@ interface ProductType {
   updatedAt: Date;
 }
 
-export const fetchAllProducts = async () => {
-  const res: AxiosResponse = await productAPIInstance.get('/products');
-  const products: ProductType = res.data;
-  console.log(products);
+export const fetchProducts = async (params: string) => {
+  const res: AxiosResponse = await productAPIInstance.get(params);
+  const products: ProductType[] = res?.data;
   return products;
 };
