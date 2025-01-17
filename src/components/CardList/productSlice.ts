@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ProductType } from '../../services/apiFetchProducts';
+import { fetchData, ProductType } from '../../services/apiFetchData';
 
-export const fetchProducts = createAsyncThunk('product/loadProducts', async () => {});
+export const fetchProducts = createAsyncThunk('product/loadProducts', async (params: string) => {
+  fetchData(params);
+});
 
 export interface ProductsState {
-  products: never[] | ProductType[];
+  products: [] | ProductType[];
   status: 'idle' | 'pending' | 'failed' | 'succeeded';
   error: null;
 }

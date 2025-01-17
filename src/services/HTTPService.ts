@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const productAPIInstance = axios.create({
+export const HTTPService = axios.create({
   baseURL: import.meta.env.VITE_PRODUCTS_BASE_URL,
   timeout: 6000,
   headers: {

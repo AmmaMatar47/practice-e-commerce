@@ -1,16 +1,16 @@
 import styles from './CardsList.module.scss';
 
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts, ProductsState } from './productSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
+import { fetchProducts } from './productSlice';
 import Card from '../Card/Card';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const CardsList = () => {
-  const dispatch = useDispatch();
-  const { products, status } = useSelector((store: { product: ProductsState }) => {
-    return store.product;
+  const { products, status } = useAppSelector(store => {
+    return store.products;
   });
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchProducts('/products'));
@@ -21,7 +21,7 @@ const CardsList = () => {
       {status === 'pending' ? (
         <LoadingSpinner />
       ) : (
-        products.map(product => <Card data={product} key={product.id} />)
+        products.map(product => <Card key={product.id} />)
       )}
     </ul>
   );
