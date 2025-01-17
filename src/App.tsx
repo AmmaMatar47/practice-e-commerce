@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { lazy, Suspense } from 'react';
 
-import LoadingSpinner from './ui/LoadingSpinner/LoadingSpinner';
-const Home = lazy(() => import('./pages/Home'));
-const Login = lazy(() => import('./pages/Login'));
-const SignUp = lazy(() => import('./pages/Signup'));
-const ProductDetails = lazy(() => import('./pages/ProductDetails'));
+const Home = lazy(() => import('./pages/Home/Home'));
+const Login = lazy(() => import('./pages/Login/Login'));
+const SignUp = lazy(() => import('./pages/Signup/Signup'));
+const ProductDetails = lazy(() => import('./pages/ProductDetails/ProductDetails'));
+
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import AppLayout from './components/AppLayout';
 
 const App = () => {
@@ -13,12 +14,11 @@ const App = () => {
     <BrowserRouter>
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<Home />} />
-            <Route path='login' element={<Login />} />
-            <Route path='signup' element={<SignUp />} />
-            <Route path='details' element={<ProductDetails />} />
-          </Route>
+          <Route index element={<AppLayout />} />
+          <Route element={<Home />} />
+          <Route path='login' element={<Login />} />
+          <Route path='signup' element={<SignUp />} />
+          <Route path='details/:id' element={<ProductDetails />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
