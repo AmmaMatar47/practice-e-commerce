@@ -11,7 +11,6 @@ const CardsList = () => {
     return store.products;
   });
   const dispatch = useAppDispatch();
-  console.log(products);
 
   useEffect(() => {
     dispatch(fetchProducts('/products'));
