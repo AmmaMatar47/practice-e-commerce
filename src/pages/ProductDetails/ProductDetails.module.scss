@@ -1,0 +1,68 @@
+@use '../../../sass/helpers/mixins.scss' as *;
+@use '../../../sass/variables/sizing' as *;
+
+.productPageContainer {
+  margin: 4.8rem $app_sides_margin;
+}
+
+.productContainer {
+  @include flex-row;
+  flex-wrap: wrap;
+  gap: 4.2rem;
+  margin-top: 3.2rem;
+}
+
+.overlayImg {
+  width: 50vw;
+  max-width: 56rem;
+}
+
+.productImgsContainer {
+  max-width: 50rem;
+}
+
+.productImage {
+  width: clamp(32rem, 50%, 60rem);
+  margin-bottom: 2.4rem;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+
+.productImgsList {
+  @include flex-row;
+  justify-content: start;
+  gap: 1.8rem;
+}
+
+.productImgItem {
+  width: 5.2rem;
+  height: 5.2rem;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+
+.productText {
+  width: clamp(32rem, 50%, 70rem);
+}
+
+.productTitle {
+  font: {
+    size: 3.8rem;
+    family: 'Goldman', sans-serif;
+  }
+  margin-bottom: 2.4rem;
+}
+
+.productDescription {
+  font-size: 1.8rem;
+  margin-bottom: 1.8rem;
+}
+
+.productPrice {
+  font-size: 1.8rem;
+  margin-right: 2.4rem;
+}
