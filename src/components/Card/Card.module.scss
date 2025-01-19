@@ -1,0 +1,36 @@
+@use '../../../sass/variables/colors' as *;
+
+.cardContainer {
+  width: 24rem;
+  background-color: $dark_mode_elements_background;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 16px 10px rgba(255, 255, 255, 0.021);
+  transition: all 0.3s;
+  &:hover {
+    scale: 1.02;
+  }
+}
+
+.cardImage {
+  width: 100%;
+  height: 17rem;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0.8rem 1rem 1.6rem;
+  color: $dark_mode_text;
+}
+
+.cardTitle {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.cardPrice {
+  font-size: 1.6rem;
+}
