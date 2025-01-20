@@ -15,11 +15,11 @@ const App = () => {
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route element={<AppLayout />}>
-            <Route path='/' element={<Home />} />
-            <Route path='login' element={<Login />} />
-            <Route path='signup' element={<SignUp />} />
+            <Route index element={<Home />} />
             <Route path='details/:id' element={<ProductDetails />} />
           </Route>
+          <Route path='login' element={<Login />} />
+          <Route path='signup' element={<SignUp />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
