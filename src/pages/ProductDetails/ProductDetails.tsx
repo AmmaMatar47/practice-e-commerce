@@ -3,7 +3,9 @@ import styles from './ProductDetails.module.scss';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
+
 import { fetchProducts } from '../../redux/reducers/product.reducer';
+
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import BackButton from '../../components/BackButton/BackButton';
 import Button from '../../components/Button/Button';
@@ -12,14 +14,9 @@ import Overlay from '../../components/Overlay/Overlay';
 const ProductDetails = () => {
   const [activeImg, setActiveImg] = useState(0);
   const [isImgOverlayActive, setIsImgOverlayActive] = useState(false);
-
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { product, status } = useAppSelector(store => store.products);
-
-  useEffect(() => {
-    dispatch(fetchProducts(`products/${id}`));
-  }, [id, dispatch]);
 
   const handleImgsClick = (imgNumber: number) => {
     setActiveImg(imgNumber);
@@ -29,8 +26,11 @@ const ProductDetails = () => {
     setIsImgOverlayActive(imgOverlay => !imgOverlay);
   };
 
-  if (product === undefined) return;
+  useEffect(() => {
+    dispatch(fetchProducts(`products/${id}`));
+  }, [id, dispatch]);
 
+  if (product === undefined) return;
   return status === 'pending' ? (
     <LoadingSpinner />
   ) : (
@@ -39,7 +39,7 @@ const ProductDetails = () => {
       <div className={styles.productContainer}>
         <div className={styles.productImgsContainer}>
           {isImgOverlayActive && (
-            <Overlay handleOnClick={handleOverlayImg} closeBtn={true}>
+            <Overlay closeOverlay={handleOverlayImg}>
               <Button
                 onClick={() => {
                   setActiveImg(activeImg => activeImg - 1);
@@ -75,6 +75,7 @@ const ProductDetails = () => {
                 onClick={() => {
                   handleImgsClick(i);
                 }}
+                key={image}
               >
                 <img src={image} className={styles.productImgItem} />
               </li>
