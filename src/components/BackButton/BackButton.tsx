@@ -1,4 +1,4 @@
-import styles from './BackButton.module.scss';
+import Button from '../Button/Button';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -8,11 +8,7 @@ const BackButton = () => {
     navigate(-1);
   };
 
-  return (
-    <button onClick={handleClick} className={styles.backBtn}>
-      Back
-    </button>
-  );
+  return <Button onClick={handleClick}>Back</Button>;
 };
 
 export default BackButton;

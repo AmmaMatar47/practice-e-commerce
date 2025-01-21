@@ -1,60 +1,22 @@
 @use '../../../sass/variables/colors' as *;
 
 .loader {
-  width: 48px;
-  height: 48px;
-  position: relative;
-}
-.loader::before,
-.loader::after {
-  content: '';
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 48em;
-  height: 48em;
-  background-image: radial-gradient(circle 10px, $dark_mode_text 100%, transparent 0),
-    radial-gradient(circle 10px, $dark_mode_text 100%, transparent 0),
-    radial-gradient(circle 10px, $dark_mode_text 100%, transparent 0),
-    radial-gradient(circle 10px, $dark_mode_text 100%, transparent 0),
-    radial-gradient(circle 10px, $dark_mode_text 100%, transparent 0),
-    radial-gradient(circle 10px, $dark_mode_text 100%, transparent 0),
-    radial-gradient(circle 10px, $dark_mode_text 100%, transparent 0),
-    radial-gradient(circle 10px, $dark_mode_text 100%, transparent 0);
-  background-position: 0em -18em, 0em 18em, 18em 0em, -18em 0em, 13em -13em, -13em -13em, 13em 13em,
-    -13em 13em;
-  background-repeat: no-repeat;
-  font-size: 0.5px;
+  position: absolute;
+  inset: 50% 0 0 50%;
+  translate: -50% -50%;
+  width: 6.2rem;
+  height: 6.2rem;
+  border: 0.8rem solid $dark_mode_elements_background;
+  border-top: 0.8rem solid $dark_mode_text;
   border-radius: 50%;
-  animation: blast 1s ease-in infinite;
-}
-.loader::after {
-  font-size: 1px;
-  background: $dark_mode_text;
-  animation: bounce 1s ease-in infinite;
+  animation: spinner 1s infinite linear;
 }
 
-@keyframes bounce {
-  0%,
-  100% {
-    font-size: 0.75px;
-  }
-  50% {
-    font-size: 1.5px;
-  }
-}
-@keyframes blast {
-  0%,
-  40% {
-    font-size: 0.5px;
-  }
-  70% {
-    opacity: 1;
-    font-size: 4px;
+@keyframes spinner {
+  0% {
+    transform: rotate(0);
   }
   100% {
-    font-size: 6px;
-    opacity: 0;
+    transform: rotate(1turn);
   }
 }

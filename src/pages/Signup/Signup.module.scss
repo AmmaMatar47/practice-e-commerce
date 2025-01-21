@@ -1,0 +1,46 @@
+@use '../../../sass/helpers/mixins' as *;
+@use '../../../sass/variables/colors' as *;
+
+.formContainer {
+  display: grid;
+  height: 100vh;
+}
+
+.form {
+  @include flex-column;
+  place-self: center;
+  background-color: $dark_mode_elements_background;
+  border-radius: 8px;
+  box-shadow: 0 0 32px 10px rgba(31, 31, 31, 0.42);
+  padding: 3.6rem;
+  span {
+    margin-bottom: 3.4rem;
+  }
+}
+
+.label {
+  @include flex-column;
+  align-items: start;
+  gap: 0.8rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2.4rem;
+  &:nth-child(4) {
+    margin-bottom: 4.2rem;
+  }
+}
+
+.textInputFiled {
+  border: 2px solid #999;
+  border-radius: 6px;
+  width: 28rem;
+  padding: 7px 8px;
+  font-family: 'Nunito', sans-serif;
+  color: $dark_mode_text;
+  background-color: transparent;
+
+  &:focus {
+    outline: none;
+    border-color: $dark_mode_text;
+  }
+}

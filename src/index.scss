@@ -30,18 +30,15 @@ a {
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #2c2c2c;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #595959;
   border-radius: 100px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #767676;
 }
