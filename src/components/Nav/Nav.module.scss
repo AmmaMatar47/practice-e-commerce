@@ -1,9 +1,10 @@
 @use '../../../sass/helpers/mixins.scss' as *;
 @use '../../../sass/variables/colors' as *;
+@use '../../../sass/variables/sizing' as *;
 
 .listContainer {
   @include flex-row;
-  padding: 1.2rem 2.8rem;
+  padding: 1.2rem $app_sides_margin;
   background-color: $dark_mode_elements_background;
   top: 0;
   position: sticky;

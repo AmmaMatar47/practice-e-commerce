@@ -22,6 +22,6 @@ export interface ProductType {
 
 export const fetchData = async (params: string) => {
   const res: AxiosResponse = await HTTPService.get(params);
-  const products: ProductType[] = res?.data;
+  const products: ProductType[] | ProductType = res?.data;
   return products;
 };

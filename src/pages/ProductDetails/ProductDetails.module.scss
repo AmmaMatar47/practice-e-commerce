@@ -1,0 +1,113 @@
+@use '../../../sass/helpers/mixins.scss' as *;
+@use '../../../sass/variables/sizing' as *;
+
+.productPageContainer {
+  margin: 4.8rem $app_sides_margin;
+}
+
+.productContainer {
+  @include flex-row;
+  column-gap: 5.6rem;
+  margin-top: 3.2rem;
+}
+
+.overlayImg {
+  width: 60vw;
+  max-width: 56rem;
+}
+
+.productImgsContainer {
+  width: clamp(38rem, 90%, 50rem);
+}
+
+.productImage {
+  margin-bottom: 2.4rem;
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+
+.productImgsList {
+  @include flex-row;
+  justify-content: start;
+  gap: 1.8rem;
+}
+
+.productImgItem {
+  width: 5.2rem;
+  height: 5.2rem;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+
+.productText {
+  width: clamp(38rem, 90%, 70rem);
+}
+
+.productTitle {
+  font: {
+    size: 3.8em;
+    family: 'Goldman', sans-serif;
+  }
+  margin-bottom: 2.4rem;
+}
+
+.productDescription {
+  font-size: 2.2em;
+  margin-bottom: 1.8rem;
+}
+
+.productPrice {
+  font-size: 1.8em;
+  margin-right: 2.4rem;
+}
+
+@media (max-width: 800px) {
+  .productContainer {
+    flex-direction: column;
+    row-gap: 4.8rem;
+  }
+
+  .productImgsContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    width: clamp(32rem, 70%, 66rem);
+  }
+
+  .productImgsList {
+    flex-direction: column;
+    margin-right: 2.4rem;
+  }
+
+  .productImgItem {
+    width: 5.2rem;
+    height: 5.2rem;
+  }
+
+  .productDescription {
+    margin-bottom: 3.6rem;
+  }
+
+  .productPrice {
+    font-size: 2.4em;
+  }
+}
+
+@media (max-width: 500px) {
+  .productImgsContainer {
+    flex-direction: column;
+  }
+
+  .productImgsList {
+    flex-direction: row;
+    margin-right: 0;
+  }
+
+  .productText {
+    font-size: 0.9rem;
+  }
+}

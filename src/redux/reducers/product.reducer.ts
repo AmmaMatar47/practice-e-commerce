@@ -7,12 +7,14 @@ export const fetchProducts = createAsyncThunk('product/loadProducts', async (par
 
 export interface ProductsState {
   products: [] | ProductType[];
+  product: undefined | ProductType;
   status: 'idle' | 'pending' | 'failed' | 'succeeded';
   error: null;
 }
 
 const initialState: ProductsState = {
   products: [],
+  product: undefined,
   status: 'idle',
   error: null,
 };
@@ -28,7 +30,11 @@ const productSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.products = action.payload;
+        if (Array.isArray(action.payload)) {
+          state.products = action.payload;
+        } else {
+          state.product = action.payload;
+        }
       })
       .addCase(fetchProducts.rejected, state => {
         state.status = 'failed';

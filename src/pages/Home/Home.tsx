@@ -1,11 +1,7 @@
 import CardsList from '../../components/CardList/CardsList';
 
 const Home = () => {
-  return (
-    <main>
-      <CardsList />
-    </main>
-  );
+  return <CardsList />;
 };
 
 export default Home;
