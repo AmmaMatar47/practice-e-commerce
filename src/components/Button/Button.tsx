@@ -5,14 +5,16 @@ interface ButtonProps {
   btnClassName?: string;
   onClick?: () => void;
   disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset' | undefined;
 }
 
-const Button = ({ children, btnClassName, onClick, disabled }: ButtonProps) => {
+const Button = ({ children, btnClassName, onClick, disabled, type }: ButtonProps) => {
   return (
     <button
       className={`${styles.btn} ${btnClassName === undefined ? '' : styles[btnClassName]}`}
       onClick={onClick}
       disabled={disabled}
+      type={type}
     >
       {children}
     </button>
