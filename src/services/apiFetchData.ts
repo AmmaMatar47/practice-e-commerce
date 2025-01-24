@@ -1,27 +1,10 @@
 import { AxiosResponse } from 'axios';
 import { HTTPService } from './HTTPService';
+import { ProductType } from '../types/product';
 
-interface Category {
-  id: number;
-  name: string;
-  image: string;
-  creationAt: Date;
-  updatedAt: Date;
-}
-
-export interface ProductType {
-  category: Category;
-  creationAt: Date;
-  description: string;
-  id: number;
-  images: string[];
-  price: number;
-  title: string;
-  updatedAt: Date;
-}
+export type Status = 'idle' | 'pending' | 'failed' | 'succeeded';
 
 export const fetchData = async (params: string) => {
-  const res: AxiosResponse = await HTTPService.get(params);
-  const products: ProductType[] | ProductType = res?.data;
-  return products;
+  const res: AxiosResponse<ProductType[] | ProductType> = await HTTPService.get(params);
+  return res.data;
 };

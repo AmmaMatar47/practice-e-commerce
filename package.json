@@ -20,7 +20,6 @@
     "react-router-dom": "^7.1.1",
     "redux": "^5.0.1",
     "redux-toolkit": "^1.1.2",
-    "sass": "^1.83.4",
     "yup": "^1.6.1"
   },
   "devDependencies": {

@@ -1,12 +1,12 @@
-@use '../../../sass/variables/colors' as *;
+@use '../../assets/styles/variables/colors';
 
 .cardContainer {
   width: 24rem;
-  background-color: $dark_mode_elements_background;
+  background-color: colors.$primary;
   cursor: pointer;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 0 16px 10px rgba(255, 255, 255, 0.021);
+  box-shadow: 0 0 16px 10px colors.$shadow;
   transition: all 0.3s;
   &:hover {
     scale: 1.02;
@@ -23,7 +23,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 0.8rem 1rem 1.6rem;
-  color: $dark_mode_text;
+  color: colors.$text;
 }
 
 .cardTitle {

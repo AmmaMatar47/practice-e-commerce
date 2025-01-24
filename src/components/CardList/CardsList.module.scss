@@ -1,4 +1,4 @@
-@use '../../../sass/helpers/mixins' as *;
+@use '../../assets/styles/helpers/mixins' as *;
 
 .productsList {
   @include fade-in-anim;

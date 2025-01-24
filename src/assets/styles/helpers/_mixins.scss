@@ -25,16 +25,16 @@
   border: none;
   border-radius: 100px;
   transition: all 0.3s;
-  color: $dark_mode_background;
-  background-color: $dark_mode_text;
+  color: $primary;
+  background-color: $text;
   font: {
     family: 'Nunito', sans-serif;
     weight: 600;
   }
   &:hover {
-    color: $dark_mode_text;
+    color: $text;
     background-color: transparent;
-    box-shadow: inset 0 0 0 2px $dark_mode_text;
+    box-shadow: inset 0 0 0 2px $text;
     cursor: pointer;
   }
 }

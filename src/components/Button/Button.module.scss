@@ -1,18 +1,23 @@
-@use '../../../sass/variables/colors' as *;
-@use '../../../sass/helpers/mixins' as *;
+@use '../../assets/styles/variables/colors';
+@use '../../assets/styles/helpers/mixins' as *;
 
-.btn {
+.primaryBtn {
   @include primary-btn;
   border-radius: 100px;
   text-align: center;
   font-size: 1.8rem;
   &:disabled {
     &:hover {
-      color: $dark_mode_background;
-      background-color: $dark_mode_text;
+      color: colors.$secondary;
+      background-color: colors.$text;
       cursor: not-allowed;
     }
   }
+}
+
+.secondaryBtn {
+  background-color: transparent;
+  color: colors.$text;
 }
 
 .closeBtn {

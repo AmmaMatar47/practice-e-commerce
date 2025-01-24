@@ -7,9 +7,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
 import { fetchProducts } from '../../redux/reducers/product.reducer';
 
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
-import BackButton from '../../components/BackButton/BackButton';
-import Button from '../../components/Button/Button';
 import Overlay from '../../components/Overlay/Overlay';
+import Button from './../../components/Button/Button';
 
 const ProductDetails = () => {
   const [activeImg, setActiveImg] = useState(0);
@@ -35,7 +34,7 @@ const ProductDetails = () => {
     <LoadingSpinner />
   ) : (
     <div className={styles.productPageContainer}>
-      <BackButton />
+      <Button backBtn={true}>Back</Button>
       <div className={styles.productContainer}>
         <div className={styles.productImgsContainer}>
           {isImgOverlayActive && (

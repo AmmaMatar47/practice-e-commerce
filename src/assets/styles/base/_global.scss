@@ -1,6 +1,6 @@
-@use '../sass/variables/colors' as *;
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+// @use './helpers/mixins' as *;
+@use '../variables/colors';
+// @use './variables/sizing' as *;
 
 * {
   margin: 0;
@@ -11,11 +11,11 @@
 html {
   font-size: 62.5%;
   font-family: 'Nunito', sans-serif;
-  color: $dark_mode_text;
+  color: colors.$text;
 }
 
 body {
-  background-color: $dark_mode_background;
+  background-color: colors.$secondary;
 }
 
 ul {

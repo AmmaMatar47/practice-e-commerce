@@ -1,10 +1,11 @@
-@use '../../../sass/helpers/mixins.scss' as *;
-@use '../../../sass/variables/sizing' as *;
+@use '../../assets/styles/variables/colors';
+@use '../../assets/styles/variables/sizing';
+@use '../../assets/styles/helpers/mixins' as *;
 
 // container
 .productPageContainer {
   @include fade-in-anim;
-  margin: 4.8rem $app_sides_margin;
+  margin: 4.8rem sizing.$app_sides_margin;
 }
 
 .productContainer {
