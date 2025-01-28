@@ -1,0 +1,43 @@
+@use '../../assets/styles/variables/colors';
+@use '../../assets/styles/helpers/mixins' as *;
+
+.field {
+  @include flex-column;
+  align-items: start;
+  gap: 0.8rem;
+  margin-bottom: 2.4rem;
+
+  &:nth-child(4) {
+    margin-bottom: 3.6rem;
+  }
+}
+
+.label {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.errorsText {
+  color: orangered;
+  line-height: 1;
+  font-size: 1.6rem;
+}
+
+.textInputFiled {
+  border: 2px solid #999;
+  border-radius: 6px;
+  width: 28rem;
+  padding: 7px 8px;
+  font-family: 'Nunito', sans-serif;
+  color: colors.$text;
+  background-color: #1d1f23;
+
+  &:focus {
+    outline: none;
+    border-color: colors.$text;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}

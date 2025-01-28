@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './Signup.module.scss';
 
 import { useFormik } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
-
 import * as Yup from 'yup';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { createUser, resetStatus } from '../../redux/reducers/user.reducer';
 
@@ -12,51 +13,14 @@ import { PostUser } from '../../types/user';
 import Button from '../../components/Button/Button';
 import Logo from '../../components/Logo/Logo';
 import Message from '../../components/Message/Message';
-import { useEffect } from 'react';
-
-interface FormikInputFieldProps {
-  name: string;
-  label: string;
-  type: string;
-  placeholder: string;
-  formik: any;
-  disabled: boolean;
-}
-
-const FormikInputField = ({
-  name,
-  label,
-  type = 'text',
-  placeholder,
-  formik,
-  disabled,
-}: FormikInputFieldProps) => (
-  <div className={styles.field}>
-    <label htmlFor={name} className={styles.label}>
-      {label}
-    </label>
-    <input
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      className={styles.textInputFiled}
-      value={formik.values[name]}
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      id={name}
-      disabled={disabled}
-    />
-    {formik.errors[name] && formik.touched[name] ? (
-      <span className={styles.errorsText}>{formik.errors[name]}</span>
-    ) : null}
-  </div>
-);
+import InputField from '../../components/InputField/InputField';
 
 const formInitialValues = {
   name: '',
   email: '',
   password: '',
-  avatar: 'https://cdn.pfps.gg/pfps/5533-roronoa-zoro.png',
+  avatar:
+    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fdefault-avatar&psig=AOvVaw1I37Luzt1bO1JOLBXRsAIP&ust=1738176347380000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCODrtM6JmYsDFQAAAAAdAAAAABAE',
 };
 
 // Validation rules for sign-up form input fields
@@ -102,7 +66,7 @@ const SignUp = () => {
           <Logo />
         </Link>
 
-        <FormikInputField
+        <InputField
           type='text'
           name='name'
           label='Username'
@@ -111,7 +75,7 @@ const SignUp = () => {
           disabled={status === 'pending'}
         />
 
-        <FormikInputField
+        <InputField
           type='text'
           name='email'
           label='Email'
@@ -120,7 +84,7 @@ const SignUp = () => {
           disabled={status === 'pending'}
         />
 
-        <FormikInputField
+        <InputField
           type='password'
           name='password'
           label='Password'
