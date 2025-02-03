@@ -1,6 +1,7 @@
+import { ProductType } from '../../types/product';
+
 import styles from './Card.module.scss';
 
-import { ProductType } from '../../services/apiFetchData';
 import { Link } from 'react-router';
 
 const Card = ({ data }: { data: ProductType }) => {

@@ -2,7 +2,7 @@ import Nav from './Nav/Nav';
 import { Outlet } from 'react-router';
 import Footer from './Footer/Footer';
 
-const AppLayout = () => {
+const ProductsLayout = () => {
   return (
     <>
       <Nav />
@@ -16,4 +16,4 @@ const AppLayout = () => {
   );
 };
 
-export default AppLayout;
+export default ProductsLayout;
