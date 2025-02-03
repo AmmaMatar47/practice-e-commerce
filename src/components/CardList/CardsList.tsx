@@ -14,15 +14,15 @@ const CardsList = () => {
 
   useEffect(() => {
     dispatch(fetchProducts('/products'));
-  }, []);
+  }, [dispatch]);
 
-  return (
+  return status === 'pending' ? (
+    <LoadingSpinner />
+  ) : (
     <ul className={styles.productsList}>
-      {status === 'pending' ? (
-        <LoadingSpinner />
-      ) : (
-        products.map(product => <Card data={product} key={product.id} />)
-      )}
+      {products.map(product => (
+        <Card data={product} key={product.id} />
+      ))}
     </ul>
   );
 };

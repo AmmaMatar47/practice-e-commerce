@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { lazy, Suspense } from 'react';
 
-const Home = lazy(() => import('./pages/Home/Home'));
+const AppLayout = lazy(() => import('./components/AppLayout'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const SignUp = lazy(() => import('./pages/Signup/Signup'));
 const ProductDetails = lazy(() => import('./pages/ProductDetails/ProductDetails'));
 
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
-import AppLayout from './components/AppLayout';
+import Home from './pages/Home/Home';
 
 const App = () => {
   return (

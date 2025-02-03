@@ -13,9 +13,12 @@ const Nav = () => {
             <Logo />
           </Link>
         </li>
-        <li>
+        <li className={styles.btnsContainer}>
           <Link to='login'>
-            <Button>Login</Button>
+            <Button btnClassName='secondaryBtn'>Login</Button>
+          </Link>
+          <Link to='signup'>
+            <Button>Sign up</Button>
           </Link>
         </li>
       </ul>

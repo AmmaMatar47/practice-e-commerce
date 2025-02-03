@@ -1,8 +1,11 @@
-@use '../../../sass/helpers/mixins.scss' as *;
-@use '../../../sass/variables/sizing' as *;
+@use '../../assets/styles/variables/colors';
+@use '../../assets/styles/variables/sizing';
+@use '../../assets/styles/helpers/mixins' as *;
 
+// container
 .productPageContainer {
-  margin: 4.8rem $app_sides_margin;
+  @include fade-in-anim;
+  margin: 4.8rem sizing.$app_sides_margin;
 }
 
 .productContainer {
@@ -11,6 +14,7 @@
   margin-top: 3.2rem;
 }
 
+// Images
 .overlayImg {
   width: 60vw;
   max-width: 56rem;
@@ -44,6 +48,7 @@
   }
 }
 
+// Text
 .productText {
   width: clamp(38rem, 90%, 70rem);
 }
@@ -58,6 +63,7 @@
 
 .productDescription {
   font-size: 2.2em;
+  line-height: 1.4;
   margin-bottom: 1.8rem;
 }
 
