@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './Signup.module.scss';
 
 import { useFormik } from 'formik';
@@ -65,7 +64,6 @@ const SignUp = () => {
         <Link to='/'>
           <Logo />
         </Link>
-
         <InputField
           type='text'
           name='name'
@@ -74,7 +72,6 @@ const SignUp = () => {
           formik={formik}
           disabled={status === 'pending'}
         />
-
         <InputField
           type='text'
           name='email'
@@ -83,7 +80,6 @@ const SignUp = () => {
           formik={formik}
           disabled={status === 'pending'}
         />
-
         <InputField
           type='password'
           name='password'
@@ -92,7 +88,6 @@ const SignUp = () => {
           formik={formik}
           disabled={status === 'pending'}
         />
-
         {status === 'failed' && error && (
           <Message
             icon={
@@ -102,7 +97,6 @@ const SignUp = () => {
                 viewBox='0 0 24 24'
                 strokeWidth={1.2}
                 stroke='orangered'
-                className={styles.errorIcon}
                 width='108px'
               >
                 <path
@@ -117,7 +111,6 @@ const SignUp = () => {
             {error}
           </Message>
         )}
-
         <span className={styles.loginText}>
           Already had existing account? <Link to='/login'>login</Link>
         </span>

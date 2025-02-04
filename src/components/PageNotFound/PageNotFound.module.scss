@@ -1,0 +1,14 @@
+.container {
+  margin: 6.2rem auto 0;
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.link {
+  font-family: 'Goldman';
+  color: blue;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}

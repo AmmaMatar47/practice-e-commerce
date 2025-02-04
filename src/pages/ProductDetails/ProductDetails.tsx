@@ -1,21 +1,19 @@
 import styles from './ProductDetails.module.scss';
 
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
+import { useState } from 'react';
+import { useLoaderData, useNavigation } from 'react-router';
 
-import { fetchProducts } from '../../redux/reducers/product.reducer';
+import { ProductType } from './../../types/product';
 
-import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import Overlay from '../../components/Overlay/Overlay';
 import Button from './../../components/Button/Button';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const ProductDetails = () => {
   const [activeImg, setActiveImg] = useState(0);
   const [isImgOverlayActive, setIsImgOverlayActive] = useState(false);
-  const { id } = useParams();
-  const dispatch = useAppDispatch();
-  const { product, status } = useAppSelector(store => store.products);
+  const navigation = useNavigation();
+  const product: ProductType = useLoaderData();
 
   const handleImgsClick = (imgNumber: number) => {
     setActiveImg(imgNumber);
@@ -25,14 +23,9 @@ const ProductDetails = () => {
     setIsImgOverlayActive(imgOverlay => !imgOverlay);
   };
 
-  useEffect(() => {
-    dispatch(fetchProducts(`products/${id}`));
-  }, [id, dispatch]);
+  if (navigation.state === 'loading') return <LoadingSpinner />;
 
-  if (product === undefined) return;
-  return status === 'pending' ? (
-    <LoadingSpinner />
-  ) : (
+  return (
     <div className={styles.productPageContainer}>
       <Button backBtn={true}>Back</Button>
       <div className={styles.productContainer}>
