@@ -14,3 +14,36 @@
   display: flex;
   gap: 1.2rem;
 }
+
+.userInfoContainer {
+  @include flex-row;
+  gap: 1.6rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.profilePicture {
+  cursor: pointer;
+  @include circle(4.4rem);
+}
+
+.loadingAvatar {
+  @include circle(4.4rem);
+  background-color: #b6b6b6;
+  animation: loadingAvatar 1.5s infinite;
+}
+
+@keyframes loadingAvatar {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
