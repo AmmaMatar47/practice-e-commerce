@@ -1,6 +1,8 @@
 import { LoaderFunction } from 'react-router-dom';
-import { fetchData } from '../../services/apiFetchData';
+import { http } from '../../services/HTTPService';
+import { Product } from '../../types/product';
+import { API_ENDPOINTS } from '../../services/apiEndPoints';
 
 export const loader: LoaderFunction = async ({ params }) => {
-  return fetchData(`products/${params.id}`);
+  return http.request<Product>('get', API_ENDPOINTS.SINGLE_PRODUCT(params.id as string));
 };

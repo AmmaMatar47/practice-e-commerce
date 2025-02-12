@@ -1,8 +1,9 @@
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import { isRouteErrorResponse, useLoaderData, useRouteError } from 'react-router-dom';
 import styles from './ErrorElement.module.scss';
 
 const ErrorElement = () => {
   const error = useRouteError() as Error;
+  const loaderError = useLoaderData();
 
   if (isRouteErrorResponse(error)) {
     return null;
@@ -25,7 +26,7 @@ const ErrorElement = () => {
         />
       </svg>
       <h3 className={styles.errorHeader}>An Error occurred !</h3>
-      <p className={styles.errorText}>{error.message}</p>
+      <p className={styles.errorText}>{loaderError.message}</p>
     </div>
   );
 };

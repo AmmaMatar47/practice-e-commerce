@@ -1,4 +1,4 @@
-import { Status } from '../services/apiFetchData';
+export type Status = 'idle' | 'pending' | 'failed' | 'succeeded';
 
 export interface PostUser {
   name: string;
@@ -18,9 +18,19 @@ export interface UserData {
 
 export interface UserState {
   user: UserData | null;
+  isLoggedIn: boolean;
   status: Status;
   error: null | string;
 }
 
-export type PostUserArg = { params: string; body: PostUser };
-export type RejectValue = { message: string };
+export type RejectValue = { message: string; status: number };
+
+export interface LoginPostValues {
+  email: string;
+  password: string;
+}
+
+export interface UserToken {
+  access_token: string;
+  refresh_token: string;
+}

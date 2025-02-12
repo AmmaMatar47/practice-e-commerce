@@ -1,0 +1,32 @@
+@use '../../assets/styles/variables/colors';
+@use '../../assets/styles/helpers/mixins' as *;
+
+.formContainer {
+  display: grid;
+  height: 100vh;
+}
+
+.form {
+  @include flex-column;
+  place-self: center;
+  background-color: colors.$primary;
+  border-radius: 8px;
+  box-shadow: 0 0 42px 10px colors.$shadow;
+  padding: 3.6rem;
+  > span {
+    margin-bottom: 3.4rem;
+  }
+}
+
+.loginText {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  color: #888;
+  a {
+    text-decoration: underline;
+    color: #999;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

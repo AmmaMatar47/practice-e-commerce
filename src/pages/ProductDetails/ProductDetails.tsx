@@ -3,7 +3,7 @@ import styles from './ProductDetails.module.scss';
 import { useState } from 'react';
 import { useLoaderData, useNavigation } from 'react-router';
 
-import { ProductType } from './../../types/product';
+import { Product } from './../../types/product';
 
 import Overlay from '../../components/Overlay/Overlay';
 import Button from './../../components/Button/Button';
@@ -13,7 +13,7 @@ const ProductDetails = () => {
   const [activeImg, setActiveImg] = useState(0);
   const [isImgOverlayActive, setIsImgOverlayActive] = useState(false);
   const navigation = useNavigation();
-  const product: ProductType = useLoaderData();
+  const product = useLoaderData<Product>();
 
   const handleImgsClick = (imgNumber: number) => {
     setActiveImg(imgNumber);
@@ -43,6 +43,10 @@ const ProductDetails = () => {
               </Button>
               <img
                 src={product.images[activeImg]}
+                onError={e =>
+                  (e.target.src =
+                    'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg')
+                }
                 alt={product.title}
                 className={styles.overlayImg}
               />
@@ -57,6 +61,10 @@ const ProductDetails = () => {
           )}
           <img
             src={product.images[activeImg]}
+            onError={e =>
+              (e.target.src =
+                'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg')
+            }
             alt={product.title}
             className={styles.productImage}
             onClick={handleOverlayImg}

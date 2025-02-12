@@ -1,4 +1,4 @@
-import { Status } from '../services/apiFetchData';
+import { Status } from './user';
 
 interface Category {
   id: number;
@@ -8,7 +8,7 @@ interface Category {
   updatedAt: Date;
 }
 
-export interface ProductType {
+export interface Product {
   category: Category;
   creationAt: Date;
   description: string;
@@ -20,8 +20,8 @@ export interface ProductType {
 }
 
 export interface ProductsState {
-  products: [] | ProductType[];
-  product: undefined | ProductType;
+  products: [] | Product[];
+  product: undefined | Product;
   status: Status;
   error: null;
 }
