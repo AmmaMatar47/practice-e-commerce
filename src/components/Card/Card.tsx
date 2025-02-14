@@ -12,11 +12,11 @@ const Card = ({ data }: { data: Product }) => {
     .replaceAll('\\', '');
 
   return (
-    <Link to={`details/${data.id}`} className={styles.cardContainer}>
+    <Link to={String(data.id)} className={styles.cardContainer}>
       <img
         src={fixedImgSrc}
         onError={e =>
-          (e.target.src =
+          (e.currentTarget.src =
             'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg')
         }
         alt={data.description}

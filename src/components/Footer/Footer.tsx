@@ -1,10 +1,23 @@
+import Logo from '../Logo/Logo';
+
 const Footer = () => {
   return (
     <footer>
-      Skizzi Your one-stop shop for everything you love. 🌐 Explore Home Shop About Us Contact Us 💬
-      Help FAQ Shipping & Returns Privacy Policy Terms of Service 📱 Connect with Us Instagram |
-      Facebook | Twitter Subscribe to our newsletter for exclusive deals! © 2025 Skizzi. All Rights
-      Reserved. Designed and owned by Ammar Matar.
+      <Logo />
+      <p>Coded and designed by Ammar Matar © 2025 Skizzi. All Rights Reserved.</p>{' '}
+      <ul>
+        <li>
+          <a target='_blank' href='https://icons8.com/icon/62856/github'>
+            github logo
+          </a>
+          icon by
+          <a target='_blank' href='https://icons8.com'>
+            Icons8
+          </a>
+        </li>
+        <li></li>
+        <li></li>
+      </ul>
     </footer>
   );
 };

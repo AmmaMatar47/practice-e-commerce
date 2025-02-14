@@ -4,7 +4,7 @@ import { useAppSelector } from '../hooks/storeHooks';
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const { isLoggedIn } = useAppSelector(store => store.user);
 
-  if (!isLoggedIn) return <Navigate to='signup' replace={true} />;
+  if (!isLoggedIn) return <Navigate to='login' replace={true} />;
 
   return children;
 };

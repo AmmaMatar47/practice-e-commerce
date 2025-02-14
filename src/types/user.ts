@@ -20,7 +20,7 @@ export interface UserState {
   user: UserData | null;
   isLoggedIn: boolean;
   status: Status;
-  error: null | string;
+  error: undefined | string;
 }
 
 export type RejectValue = { message: string; status: number };

@@ -11,6 +11,7 @@ import { PostUser } from '../../types/user';
 import Button from '../../components/Button/Button';
 import Logo from '../../components/Logo/Logo';
 import InputField from '../../components/InputField/InputField';
+import { useEffect } from 'react';
 
 const formInitialValues = {
   name: 'Nicolas',
@@ -32,7 +33,7 @@ const yupSignupValidation = Yup.object({
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
-  const { isLoggedIn, status } = useAppSelector(store => store.user);
+  const { isLoggedIn, status, error } = useAppSelector(store => store.user);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -49,14 +50,16 @@ const SignUp = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(resetStatus());
+  }, []);
+
   return isLoggedIn ? (
     <Navigate to='/' replace={true} />
   ) : (
     <div className={styles.formContainer}>
       <form className={styles.form} onSubmit={formik.handleSubmit}>
-        <Link to='/'>
-          <Logo />
-        </Link>
+        <Logo />
         <InputField
           type='text'
           name='name'
@@ -82,8 +85,10 @@ const SignUp = () => {
           disabled={status === 'pending'}
         />
 
+        {error && <span className={styles.error}>{error}</span>}
+
         <span className={styles.loginText}>
-          Already had existing account? <Link to='/login'>login</Link>
+          Already had an account? <Link to='/login'>login</Link>
         </span>
         <Button type='submit'>Sign up</Button>
       </form>

@@ -9,7 +9,7 @@ const initialState: UserState = {
   user: null,
   isLoggedIn: false,
   status: 'idle',
-  error: null,
+  error: undefined,
 };
 
 // Thunk
@@ -31,9 +31,7 @@ export const login = createAsyncThunk<
   if (body !== undefined && !isUserTokenAvailable) {
     await authUser({ email: body.email, password: body.password });
   }
-
   const UserData = await http.request<UserData>('get', API_ENDPOINTS.LOGIN);
-  console.log({ UserData });
   return UserData;
 });
 
@@ -46,11 +44,11 @@ const userSlice = createSlice({
       state.user = null;
       state.isLoggedIn = false;
       state.status = 'idle';
-      state.error = null;
+      state.error = undefined;
     },
 
     resetStatus(state) {
-      state.error = null;
+      state.error = undefined;
       state.status = 'idle';
     },
   },
@@ -59,11 +57,11 @@ const userSlice = createSlice({
       state.user = action.payload;
       state.isLoggedIn = true;
       state.status = 'succeeded';
-      state.error = null;
+      state.error = undefined;
     });
     builder.addCase(createUser.pending, state => {
       state.status = 'pending';
-      state.error = null;
+      state.error = undefined;
     });
     builder.addCase(createUser.rejected, (state, action) => {
       state.status = 'failed';
@@ -72,15 +70,14 @@ const userSlice = createSlice({
     });
 
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log(action.payload);
-      state.error = null;
+      state.error = undefined;
       state.isLoggedIn = true;
       state.user = action.payload;
       state.status = 'succeeded';
     });
     builder.addCase(login.pending, state => {
       state.status = 'pending';
-      state.error = null;
+      state.error = undefined;
     });
     builder.addCase(login.rejected, (state, action) => {
       state.status = 'failed';

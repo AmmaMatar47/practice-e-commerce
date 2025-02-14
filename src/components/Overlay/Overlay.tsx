@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Button from '../Button/Button';
 import styles from './Overlay.module.scss';
 
@@ -8,14 +7,7 @@ interface OverlayProps {
 }
 
 const Overlay = ({ children, closeOverlay }: OverlayProps) => {
-  useEffect(() => {
-    // Lock scroll on mount
-    document.body.style.overflow = 'hidden';
-  }, []);
-
   const handleClick = () => {
-    // Unlock scroll on unmount
-    document.body.style.overflow = 'auto';
     closeOverlay();
   };
 

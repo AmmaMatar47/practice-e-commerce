@@ -1,11 +1,8 @@
-import { lazy, Suspense, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from './hooks/storeHooks.ts';
+import { lazy, Suspense } from 'react';
 
-import { createBrowserRouter, Navigate, Route, RouterProvider } from 'react-router';
-import { login } from './redux/reducers/user.reducer.ts';
+import { createBrowserRouter, Navigate, Outlet, Route, RouterProvider } from 'react-router';
 import { createRoutesFromElements } from 'react-router';
 
-const ProductsLayout = lazy(() => import('./components/ProductsLayout'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const SignUp = lazy(() => import('./pages/Signup/Signup'));
 const ProductDetails = lazy(() => import('./pages/ProductDetails/ProductDetails'));
@@ -17,56 +14,13 @@ import ErrorElement from './components/Error/ErrorElement.tsx';
 import PageNotFound from './components/PageNotFound/PageNotFound.tsx';
 import ProtectedRoute from './components/ProtectedRoute.tsx';
 
-import { loader as productDetailsLoader } from './pages/ProductDetails/ProductDetails.loader.ts';
-import { loader as productsLoader } from './pages/Home/Home.loader.ts';
+import Nav from './components/Nav/Nav.tsx';
+import Footer from './components/Footer/Footer.tsx';
 
 const App = () => {
-  const isUserTokenAvailable = !!localStorage.getItem('Token');
-  const { isLoggedIn } = useAppSelector(store => store.user);
-  const dispatch = useAppDispatch();
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route
-          element={
-            <ProtectedRoute>
-              <Suspense fallback={<LoadingSpinner />}>
-                <ProductsLayout />
-              </Suspense>
-            </ProtectedRoute>
-          }
-          errorElement={<ErrorElement />}
-        >
-          {/* Prevent making a http requests from children routes and executing unnecessary code   */}
-          {isLoggedIn ? (
-            <>
-              <Route
-                index
-                element={<Home />}
-                loader={productsLoader}
-                hydrateFallbackElement={<LoadingSpinner />}
-                errorElement={<ErrorElement />}
-              />
-
-              <Route
-                path='details/:id'
-                element={
-                  <Suspense fallback={<LoadingSpinner />}>
-                    <ProductDetails />
-                  </Suspense>
-                }
-                loader={productDetailsLoader}
-                hydrateFallbackElement={<LoadingSpinner />}
-                errorElement={<ErrorElement />}
-              />
-            </>
-          ) : (
-            <Route index element={<Navigate to='signup' replace={true} />} />
-          )}
-          )
-        </Route>
-
         <Route
           path='login'
           element={
@@ -84,14 +38,30 @@ const App = () => {
             </Suspense>
           }
         />
+        <Route
+          element={
+            <ProtectedRoute>
+              <>
+                <Nav />
+                <main>
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <Outlet />
+                  </Suspense>
+                </main>
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+          errorElement={<ErrorElement />}
+        >
+          <Route path='/' element={<Navigate to='/products' replace={true} />} />
+          <Route path='products' element={<Home />} errorElement={<ErrorElement />} />
+          <Route path='products/:id' element={<ProductDetails />} errorElement={<ErrorElement />} />
+        </Route>
         <Route path='*' element={<PageNotFound />} />
       </>
     )
   );
-
-  useEffect(() => {
-    if (isUserTokenAvailable && !isLoggedIn) dispatch(login());
-  }, [dispatch, isUserTokenAvailable]);
 
   return <RouterProvider router={router} />;
 };

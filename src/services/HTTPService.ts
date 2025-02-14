@@ -1,6 +1,8 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { API_ENDPOINTS } from './apiEndPoints';
 import type { UserToken, PostUser, LoginPostValues } from '../types/user';
+import store from '../redux/store';
+import { loading, loadingFinished } from '../redux/reducers/global.reducer';
 
 type HttpMethods = 'get' | 'post' | 'delete' | 'patch';
 
@@ -35,6 +37,7 @@ export const HTTPService = class HttpService {
     body?: PostUser | LoginPostValues | undefined,
     customHeaders = {}
   ): Promise<Res> {
+    store.dispatch(loading());
     try {
       const res: AxiosResponse<Res> = await this.instance[method](endpoint, body, {
         headers: customHeaders,
@@ -51,7 +54,9 @@ export const HTTPService = class HttpService {
 
       return res.data;
     } catch (err) {
-      throw new Error(this.handleError(err).message);
+      throw new Error(this.handleError(err));
+    } finally {
+      store.dispatch(loadingFinished());
     }
   }
 
@@ -63,23 +68,15 @@ export const HTTPService = class HttpService {
   handleError(error: unknown) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
-        return {
-          status: error.status,
-          message: 'There was an error with the request.',
-        };
+        if (error.status === 401) return 'Invalid email or password';
+        return 'There was an error with the request.';
       } else if (error.request) {
-        return {
-          status: error.status,
-          message: 'No response received from the server. Please try again later.',
-        };
+        return error.message;
       } else {
-        return {
-          status: error.status,
-          message: error.message || 'Something went wrong. Please try again later.',
-        };
+        return error.message || 'Something went wrong. Please try again later.';
       }
     } else {
-      return { message: 'An unknown error occurred.' };
+      return 'An unknown error occurred.';
     }
   }
 };
