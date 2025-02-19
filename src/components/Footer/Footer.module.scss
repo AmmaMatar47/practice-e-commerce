@@ -3,6 +3,7 @@
 
 .footer {
   background-color: colors.$primary;
+  margin-top: 9.2rem;
   padding: 3.2rem 0;
   text-align: center;
 }
@@ -22,7 +23,7 @@
   fill: colors.$text;
   transition: all 0.2s;
   &:hover {
-    fill: colors.$secondary;
+    fill: #555;
   }
 }
 

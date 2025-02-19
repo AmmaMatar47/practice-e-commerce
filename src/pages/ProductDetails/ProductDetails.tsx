@@ -93,18 +93,20 @@ const ProductDetails = () => {
             className={styles.productImage}
             onClick={handleOverlayImg}
           />
-          <ul className={styles.productImgsList}>
-            {product.images.map((image, i) => (
-              <li
-                onClick={() => {
-                  handleImgsClick(i);
-                }}
-                key={image}
-              >
-                <img src={image} className={styles.productImgItem} />
-              </li>
-            ))}
-          </ul>
+          {product.images.length <= 1 ? null : (
+            <ul className={styles.productImgsList}>
+              {product.images.map((image, i) => (
+                <li
+                  onClick={() => {
+                    handleImgsClick(i);
+                  }}
+                  key={image}
+                >
+                  <img src={image} className={styles.productImgItem} />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <section className={styles.productText}>
           <h2 className={styles.productTitle}>{product.title}</h2>

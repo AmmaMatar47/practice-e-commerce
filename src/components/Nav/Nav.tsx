@@ -22,11 +22,11 @@ const Nav = () => {
   };
 
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ul className={styles.listContainer}>
         <li>
           <Link to='/'>
-            <Logo logoSize={4.2} />
+            <Logo logoSize={3.8} />
           </Link>
         </li>
         {status === 'pending' ? (
@@ -41,28 +41,17 @@ const Nav = () => {
             </Link>
           </li>
         ) : (
-          <div className={styles.userInfoContainer}>
+          <div
+            className={styles.userInfoContainer}
+            onClick={() => {
+              setIsUserOptions(state => !state);
+            }}
+          >
             <p>{user.name}</p>
-            <img src={user?.avatar} alt='Profile picture.' className={styles.profilePicture} />
-            <button
-              className={styles.openOptionsBtn}
-              onClick={() => {
-                setIsUserOptions(state => !state);
-              }}
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                height='24px'
-                viewBox='0 -960 960 960'
-                width='24px'
-                fill='#e8eaed'
-                className={`${styles.openOptionsIcons} ${
-                  isUserOptions ? styles.userOptionsActive : ''
-                }`}
-              >
-                <path d='M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z' />
-              </svg>
-            </button>
+
+            <div className={styles.usernameContainer}>
+              <img src={user?.avatar} alt='Profile picture.' className={styles.profilePicture} />
+            </div>
 
             {isUserOptions ? (
               <ul className={styles.userOptionsList}>
