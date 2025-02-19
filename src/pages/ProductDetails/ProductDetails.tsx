@@ -38,7 +38,7 @@ const ProductDetails = () => {
     fetchProductData();
   }, []);
 
-  if (product === undefined) return;
+  if (product === undefined) return <LoadingSpinner />;
 
   return isLoading ? (
     <LoadingSpinner />

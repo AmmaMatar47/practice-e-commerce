@@ -1,36 +1,57 @@
+@use '../../assets/styles/helpers/mixins' as *;
 @use '../../assets/styles/variables/colors';
 
 .cardContainer {
-  width: 24rem;
+  @include flex-row;
   background-color: colors.$primary;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 0 16px 10px colors.$shadow;
   transition: all 0.3s;
   &:hover {
-    scale: 1.02;
+    translate: 0 -3px;
   }
 }
 
 .cardImage {
-  width: 100%;
-  height: 17rem;
+  width: 18rem;
+  max-height: 18rem;
 }
 
 .cardText {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0.8rem 1rem 1.6rem;
+  @include flex-column;
+  height: 100%;
+  align-items: start;
+  padding: 1.2rem 1.2rem;
   color: colors.$text;
 }
 
 .cardTitle {
-  font-size: 1.6rem;
+  font-family: Goldman;
+  font-size: 1.8rem;
   margin-bottom: 1.2rem;
 }
 
 .cardPrice {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  margin-right: 2.4rem;
+}
+
+.priceContainer {
+  @include flex-row;
+}
+
+.priceContainer button {
+  z-index: 10;
+  padding: 0.4rem 1.6rem;
+  display: grid;
+  svg {
+    fill: colors.$secondary;
+  }
+  &:hover {
+    svg {
+      fill: colors.$text;
+    }
+  }
 }

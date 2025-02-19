@@ -1,0 +1,32 @@
+@use '../../assets/styles/helpers/mixins' as *;
+@use '../../assets/styles/variables/colors';
+
+.footer {
+  background-color: colors.$primary;
+  padding: 3.2rem 0;
+  text-align: center;
+}
+
+.socialLinksList {
+  @include flex-row;
+  justify-content: center;
+  gap: 2.4rem;
+  margin: 2.4rem;
+}
+
+.socialLinkItem {
+  cursor: pointer;
+}
+
+.listIcons {
+  fill: colors.$text;
+  transition: all 0.2s;
+  &:hover {
+    fill: colors.$secondary;
+  }
+}
+
+.footerText {
+  font-size: 1.6rem;
+  color: #999;
+}
