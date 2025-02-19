@@ -13,7 +13,7 @@
 }
 
 .label {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
 }
 .errorsText {
@@ -23,13 +23,13 @@
 }
 
 .textInputFiled {
-  border: 2px solid #999;
+  border: 2px solid #555;
   border-radius: 6px;
   width: 28rem;
   padding: 7px 8px;
   font-family: 'Nunito', sans-serif;
   color: colors.$text;
-  background-color: #1d1f23;
+  background-color: #15171a;
 
   &:focus {
     outline: none;
