@@ -2,15 +2,78 @@
 @use '../../assets/styles/variables/sizing' as *;
 @use '../../assets/styles/helpers/mixins' as *;
 
+.nav {
+  box-shadow: 0 0 10px 10px colors.$shadow;
+}
+
 .listContainer {
   @include flex-row;
   padding: 1.2rem $app_sides_margin;
   background-color: colors.$primary;
-  top: 0;
-  position: sticky;
 }
 
 .btnsContainer {
   display: flex;
   gap: 1.2rem;
+}
+
+.userInfoContainer {
+  @include flex-row;
+  position: relative;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.profilePicture {
+  @include circle(4.8rem);
+  margin-left: 1.6rem;
+}
+
+.loadingAvatar {
+  @include circle(4.4rem);
+  background-color: #b6b6b6;
+  animation: loadingAvatar 1.5s infinite;
+}
+
+.userOptionsList {
+  position: absolute;
+  background-color: colors.$primary;
+  top: 120%;
+  right: 0;
+  border: #333 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+  animation: 0.2s dropDown ease-in-out;
+  transform-origin: top;
+}
+
+.userOptionsBtn {
+  font-family: 'Nunito';
+  font-size: 1.8rem;
+  color: colors.$text;
+  background-color: transparent;
+  width: 100%;
+  padding: 1.6rem;
+  border: none;
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    background-color: #333;
+  }
+}
+
+@keyframes loadingAvatar {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
 }

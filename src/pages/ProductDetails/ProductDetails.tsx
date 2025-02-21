@@ -1,19 +1,23 @@
 import styles from './ProductDetails.module.scss';
 
-import { useState } from 'react';
-import { useLoaderData, useNavigation } from 'react-router';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 
-import { ProductType } from './../../types/product';
+import { Product } from './../../types/product';
 
 import Overlay from '../../components/Overlay/Overlay';
 import Button from './../../components/Button/Button';
+import { http } from '../../services/HTTPService';
+import { API_ENDPOINTS } from '../../services/apiEndPoints';
+import { useAppSelector } from '../../hooks/storeHooks';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const ProductDetails = () => {
   const [activeImg, setActiveImg] = useState(0);
   const [isImgOverlayActive, setIsImgOverlayActive] = useState(false);
-  const navigation = useNavigation();
-  const product: ProductType = useLoaderData();
+  const [product, setProduct] = useState<Product>();
+  const { isLoading } = useAppSelector(store => store.global);
+  const { id } = useParams();
 
   const handleImgsClick = (imgNumber: number) => {
     setActiveImg(imgNumber);
@@ -23,56 +27,86 @@ const ProductDetails = () => {
     setIsImgOverlayActive(imgOverlay => !imgOverlay);
   };
 
-  if (navigation.state === 'loading') return <LoadingSpinner />;
+  useEffect(() => {
+    const fetchProductData = async () => {
+      const product = await http.request<Product>(
+        'get',
+        API_ENDPOINTS.SINGLE_PRODUCT(id as string)
+      );
+      setProduct(product);
+    };
+    fetchProductData();
+  }, []);
 
-  return (
+  if (product === undefined) return <LoadingSpinner />;
+
+  return isLoading ? (
+    <LoadingSpinner />
+  ) : (
     <div className={styles.productPageContainer}>
       <Button backBtn={true}>Back</Button>
       <div className={styles.productContainer}>
         <div className={styles.productImgsContainer}>
           {isImgOverlayActive && (
             <Overlay closeOverlay={handleOverlayImg}>
-              <Button
-                onClick={() => {
-                  setActiveImg(activeImg => activeImg - 1);
-                }}
-                disabled={activeImg === 0}
-                btnClassName='paginationLeftBtn'
-              >
-                &larr;
-              </Button>
+              {activeImg === 0 ? (
+                <></>
+              ) : (
+                <Button
+                  onClick={() => {
+                    setActiveImg(activeImg => activeImg - 1);
+                  }}
+                  btnClassName='paginationLeftBtn'
+                >
+                  &larr;
+                </Button>
+              )}
+
               <img
                 src={product.images[activeImg]}
+                onError={e =>
+                  (e.currentTarget.src =
+                    'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg')
+                }
                 alt={product.title}
                 className={styles.overlayImg}
               />
-              <Button
-                onClick={() => setActiveImg(activeImg => activeImg + 1)}
-                disabled={activeImg >= product.images.length - 1}
-                btnClassName='paginationRightBtn'
-              >
-                &rarr;
-              </Button>
+              {activeImg >= product.images.length - 1 ? (
+                <></>
+              ) : (
+                <Button
+                  onClick={() => setActiveImg(activeImg => activeImg + 1)}
+                  btnClassName='paginationRightBtn'
+                >
+                  &rarr;
+                </Button>
+              )}
             </Overlay>
           )}
           <img
             src={product.images[activeImg]}
+            onError={e => {
+              e.currentTarget.src =
+                'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg';
+            }}
             alt={product.title}
             className={styles.productImage}
             onClick={handleOverlayImg}
           />
-          <ul className={styles.productImgsList}>
-            {product.images.map((image, i) => (
-              <li
-                onClick={() => {
-                  handleImgsClick(i);
-                }}
-                key={image}
-              >
-                <img src={image} className={styles.productImgItem} />
-              </li>
-            ))}
-          </ul>
+          {product.images.length <= 1 ? null : (
+            <ul className={styles.productImgsList}>
+              {product.images.map((image, i) => (
+                <li
+                  onClick={() => {
+                    handleImgsClick(i);
+                  }}
+                  key={image}
+                >
+                  <img src={image} className={styles.productImgItem} />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <section className={styles.productText}>
           <h2 className={styles.productTitle}>{product.title}</h2>
