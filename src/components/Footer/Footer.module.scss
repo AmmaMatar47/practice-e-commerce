@@ -17,13 +17,12 @@
 
 .socialLinkItem {
   cursor: pointer;
-}
-
-.listIcons {
-  fill: colors.$text;
-  transition: all 0.2s;
-  &:hover {
-    fill: #555;
+  svg {
+    fill: colors.$text;
+    transition: all 0.2s;
+    &:hover {
+      fill: #555;
+    }
   }
 }
 

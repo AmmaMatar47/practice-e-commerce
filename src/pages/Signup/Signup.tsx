@@ -88,7 +88,7 @@ const SignUp = () => {
         {error && <span className={styles.error}>{error}</span>}
 
         <span className={styles.loginText}>
-          Already had an account? <Link to='/login'>login</Link>
+          Already have an account? <Link to='/login'>login</Link>
         </span>
         <Button type='submit'>Sign up</Button>
       </form>
