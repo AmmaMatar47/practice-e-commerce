@@ -28,8 +28,7 @@ const Footer = () => {
         </li>
       </ul>
       <p className={styles.footerText}>
-        Coded and designed by Ammar Matar
-        <br /> © 2025 Skizzi. All Rights Reserved.
+        Coded & designed by Ammar Matar © 2025 Skizzi. All Rights Reserved.
       </p>
     </footer>
   );

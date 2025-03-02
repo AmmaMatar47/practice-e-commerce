@@ -77,3 +77,10 @@
     opacity: 0.4;
   }
 }
+
+@media (max-width: 55rem) {
+  .listContainer {
+    padding: 1.2rem 2.4rem;
+    background-color: colors.$primary;
+  }
+}

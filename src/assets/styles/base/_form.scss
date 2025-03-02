@@ -1,7 +1,7 @@
-@use '../../assets/styles/variables/colors';
-@use '../../assets/styles/helpers/mixins' as *;
+@use '../variables/colors';
+@use '../helpers/mixins' as *;
 
-.formContainer {
+.form-container {
   display: grid;
   height: 100vh;
 }
@@ -18,8 +18,8 @@
   }
 }
 
-.loginText {
-  margin-bottom: 2rem;
+.form-text {
+  margin: 1.2rem 0 2.4rem;
   font-size: 1.5rem;
   color: #888;
   a {

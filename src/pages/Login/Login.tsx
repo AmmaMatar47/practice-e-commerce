@@ -1,4 +1,4 @@
-import styles from './Login.module.scss';
+import '../../assets/styles/base/_form.scss';
 
 import { useFormik } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
@@ -14,8 +14,8 @@ import InputField from '../../components/InputField/InputField';
 import { useEffect } from 'react';
 
 const formInitialValues = {
-  email: 'nico@gmail.com',
-  password: '12345',
+  email: '',
+  password: '',
 };
 
 // Validation rules for sign-up form input fields
@@ -46,8 +46,8 @@ const Login = () => {
   return isLoggedIn ? (
     <Navigate to='/' replace={true} />
   ) : (
-    <div className={styles.formContainer}>
-      <form className={styles.form} onSubmit={formik.handleSubmit}>
+    <div className='form-container'>
+      <form className='form' onSubmit={formik.handleSubmit}>
         <Logo />
 
         <InputField
@@ -67,9 +67,9 @@ const Login = () => {
           disabled={status === 'pending'}
         />
 
-        {error && <span className={styles.error}>{error}</span>}
+        {error && <span className='error'>{error}</span>}
 
-        <span className={styles.loginText}>
+        <span className='form-text'>
           create a new account <Link to='/signup'>Sign up</Link>
         </span>
         <Button type='submit'>Login</Button>

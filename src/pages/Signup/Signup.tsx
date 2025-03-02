@@ -1,4 +1,4 @@
-import styles from './Signup.module.scss';
+import '../../assets/styles/base/_form.scss';
 
 import { useFormik } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
@@ -14,9 +14,9 @@ import InputField from '../../components/InputField/InputField';
 import { useEffect } from 'react';
 
 const formInitialValues = {
-  name: 'Nicolas',
-  email: 'nico@gmail.com',
-  password: '12345',
+  name: '',
+  email: '',
+  password: '',
   avatar:
     'https://static.vecteezy.com/system/resources/previews/001/840/618/non_2x/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg',
 };
@@ -57,8 +57,8 @@ const SignUp = () => {
   return isLoggedIn ? (
     <Navigate to='/' replace={true} />
   ) : (
-    <div className={styles.formContainer}>
-      <form className={styles.form} onSubmit={formik.handleSubmit}>
+    <div className='form-container'>
+      <form className='form' onSubmit={formik.handleSubmit}>
         <Logo />
         <InputField
           type='text'
@@ -85,9 +85,9 @@ const SignUp = () => {
           disabled={status === 'pending'}
         />
 
-        {error && <span className={styles.error}>{error}</span>}
+        {error && <span className='error'>{error}</span>}
 
-        <span className={styles.loginText}>
+        <span className='form-text'>
           Already have an account? <Link to='/login'>login</Link>
         </span>
         <Button type='submit'>Sign up</Button>

@@ -22,6 +22,7 @@
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "redux-toolkit": "^1.1.2",
+    "sass": "^1.85.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {
